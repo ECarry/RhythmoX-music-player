@@ -1,4 +1,4 @@
-**🎵 React Native Music Client for iPhone 📱**
+**🎵 RhythmoX: React Native Music Client for iPhone 📱**
 
 This is a mobile music client built using React Native, connecting to the Subsonic API. The client allows users to access their music library hosted on a Navidrome server.
 
