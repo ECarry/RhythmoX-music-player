@@ -1,3 +1,4 @@
+import { useLogTrackPlayerState } from "@/hooks/useLogTrackPlayerState";
 import { useSetupTrackPlayer } from "@/hooks/useSetupTrackPlayer";
 import { SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -11,9 +12,11 @@ const App = () => {
     SplashScreen.hideAsync();
   }, []);
 
-  // useSetupTrackPlayer({
-  //   onLoad: handleTrackPlayerLoaded,
-  // });
+  useSetupTrackPlayer({
+    onLoad: handleTrackPlayerLoaded,
+  });
+
+  useLogTrackPlayerState();
 
   return (
     <SafeAreaProvider>

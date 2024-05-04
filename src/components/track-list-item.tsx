@@ -1,38 +1,30 @@
-import React from "react";
 import { TouchableHighlight, View, Text, Image } from "react-native";
 import { StyleSheet } from "react-native";
-import unknownArtistImage from "@/assets/unknown_artist.png";
-import unknownTrackImage from "@/assets/unknown_track.png";
 import { colors, fontSize } from "@/constants/tokens";
 import { defaultStyles } from "@/styles";
-import { getCoverArt } from "@/utils/api";
-import { Track } from "react-native-track-player";
+import { Track, useActiveTrack } from "react-native-track-player";
+import Entypo from "@expo/vector-icons/Entypo";
 
 interface TrackListItemProps {
   track: Track;
+  onTrackSelected: (track: Track) => void;
 }
 
-const TrackListItem = ({ track }: TrackListItemProps) => {
-  const isActiveTrack = false;
-  // TODO: Base64 image
-  const [cover, setCover] = React.useState(unknownTrackImage);
+const username = process.env.EXPO_PUBLIC_SUBSONIC_API_U;
+const password = process.env.EXPO_PUBLIC_SUBSONIC_API_P;
 
-  const getCover = async () => {
-    try {
-      if (track.albumId) {
-        const data = await getCoverArt(track.albumId);
+const TrackListItem = ({ track, onTrackSelected }: TrackListItemProps) => {
+  //TODO: useActiveTrack()?.url === track.url;
+  const isActiveTrack = useActiveTrack()?.id === track.id;
 
-        setCover(data);
-      }
-    } catch (error) {}
+  const coverUrl = `http://192.168.0.98:4533/rest/getCoverArt?u=${username}&p=${password}&v=1.16.1&c=ecarry&id=${track.albumId}`;
+
+  const handleTrackSelect = (track: Track) => {
+    onTrackSelected(track);
   };
 
-  React.useEffect(() => {
-    getCover();
-  }, []);
-
   return (
-    <TouchableHighlight>
+    <TouchableHighlight onPress={() => handleTrackSelect(track)}>
       <View
         style={{
           ...styles.trackItemContainer,
@@ -40,34 +32,52 @@ const TrackListItem = ({ track }: TrackListItemProps) => {
       >
         <View>
           <Image
-            source={unknownTrackImage}
+            source={{
+              uri: coverUrl,
+            }}
             style={{
               ...styles.trackArtworkImage,
             }}
           />
         </View>
-        {/* TITLE + ARTIST  */}
-        <View style={{ width: "100%" }}>
-          <Text
-            numberOfLines={1}
-            style={{
-              ...styles.trackTitleText,
-              color: isActiveTrack ? colors.primary : colors.text,
-            }}
-          >
-            {track.title}
-          </Text>
-
-          {track.artist && (
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          {/* TITLE + ARTIST  */}
+          <View style={{ width: "100%" }}>
             <Text
               numberOfLines={1}
               style={{
-                ...styles.trackArtistText,
+                ...styles.trackTitleText,
+                color: isActiveTrack ? colors.primary : colors.text,
               }}
             >
-              {track.artist}
+              {track.title}
             </Text>
-          )}
+
+            {track.artist && (
+              <Text
+                numberOfLines={1}
+                style={{
+                  ...styles.trackArtistText,
+                }}
+              >
+                {track.artist}
+              </Text>
+            )}
+          </View>
+          {/* ACTION BUTTON  */}
+          <Entypo
+            name="dots-three-horizontal"
+            size={18}
+            color={colors.icon}
+            onTrackSelected={handleTrackSelect}
+          />
         </View>
       </View>
     </TouchableHighlight>

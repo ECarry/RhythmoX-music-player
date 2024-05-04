@@ -18,8 +18,11 @@ function removePrefix(obj: AnyObject): AnyObject {
   return obj;
 }
 
-const url = `http://192.168.0.98:4533/rest/getRandomSongs?u=username&p=password&v=1.16.1&c=ecarry&size=30`;
-const coverUrl = `http://192.168.0.98:4533/rest/getCoverArt?u=username&p=password&v=1.16.1&c=ecarry`;
+const username = process.env.EXPO_PUBLIC_SUBSONIC_API_U;
+const password = process.env.EXPO_PUBLIC_SUBSONIC_API_P;
+
+const url = `http://192.168.0.98:4533/rest/getRandomSongs?u=${username}&p=${password}&v=1.16.1&c=ecarry&size=100`;
+const coverUrl = `http://192.168.0.98:4533/rest/getCoverArt?u=${username}&p=${password}&v=1.16.1&c=ecarry`;
 
 export const getRandomSongs = async () => {
   try {
@@ -39,6 +42,8 @@ export const getRandomSongs = async () => {
 
     if (status === "ok") {
       const res = data["subsonic-response"].randomSongs.song;
+
+      console.log(res);
 
       return res;
     } else {
