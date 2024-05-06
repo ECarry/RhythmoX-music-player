@@ -10,6 +10,8 @@ export type TracksListProps = Partial<FlatListProps<Track>> & {
 
 const TracksList = ({ tracks, ...flatListProps }: TracksListProps) => {
   const handleTrackSelect = async (track: Track) => {
+    console.log(track);
+
     await TrackPlayer.load(track);
   };
 
