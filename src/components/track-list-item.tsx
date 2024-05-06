@@ -2,8 +2,10 @@ import { TouchableHighlight, View, Text, Image } from "react-native";
 import { StyleSheet } from "react-native";
 import { colors, fontSize } from "@/constants/tokens";
 import { defaultStyles } from "@/styles";
-import { Track, useActiveTrack } from "react-native-track-player";
+import { Track, useActiveTrack, useIsPlaying } from "react-native-track-player";
 import Entypo from "@expo/vector-icons/Entypo";
+import LoaderKit from "react-native-loader-kit";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 interface TrackListItemProps {
   track: Track;
@@ -11,6 +13,7 @@ interface TrackListItemProps {
 }
 
 const TrackListItem = ({ track, onTrackSelected }: TrackListItemProps) => {
+  const { playing } = useIsPlaying();
   const isActiveTrack = useActiveTrack()?.id === track.id;
 
   const handleTrackSelect = (track: Track) => {
@@ -33,6 +36,34 @@ const TrackListItem = ({ track, onTrackSelected }: TrackListItemProps) => {
               ...styles.trackArtworkImage,
             }}
           />
+          {isActiveTrack && (
+            <View
+              style={{
+                zIndex: 10,
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: 50,
+                height: 50,
+                backgroundColor: "rgba(0,0,0,0.5)",
+              }}
+            />
+          )}
+          {isActiveTrack &&
+            (playing ? (
+              <LoaderKit
+                style={styles.trackPlayingIconIndicator}
+                name={"LineScaleParty"}
+                color={colors.icon}
+              />
+            ) : (
+              <MaterialCommunityIcons
+                name="dots-horizontal"
+                color={colors.icon}
+                size={20}
+                style={styles.trackPlayingIconIndicator}
+              />
+            ))}
         </View>
         <View
           style={{
@@ -88,9 +119,18 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   trackArtworkImage: {
+    position: "relative",
     borderRadius: 8,
     width: 50,
     height: 50,
+  },
+  trackPlayingIconIndicator: {
+    zIndex: 20,
+    position: "absolute",
+    top: 16,
+    left: 16,
+    width: 16,
+    height: 16,
   },
   trackTitleText: {
     ...defaultStyles.text,

@@ -1,17 +1,19 @@
 import { Image, TouchableOpacity, View, Text, ViewProps } from "react-native";
-import TrackPlayer, { useActiveTrack } from "react-native-track-player";
+import TrackPlayer, { Track, useActiveTrack } from "react-native-track-player";
 import { StyleSheet } from "react-native";
 import { defaultStyles } from "@/styles";
 import { PlayerControls, SkipToNextButton } from "@/components/player-controls";
+import useLastActiveTrack from "@/hooks/useLastActiveTrack";
 
 const FloatingPlayer = ({ style }: ViewProps) => {
   const activeTrack = useActiveTrack();
+  const lastActiveTrack = useLastActiveTrack();
 
-  if (!activeTrack) return null;
+  const displayTrack = activeTrack ?? lastActiveTrack;
 
-  const displayTrack = activeTrack;
+  if (!displayTrack) return null;
 
-  TrackPlayer.play();
+  //TrackPlayer.play();
 
   return (
     <TouchableOpacity activeOpacity={0.9} style={[styles.container, style]}>
