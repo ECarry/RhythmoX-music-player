@@ -10,14 +10,8 @@ interface TrackListItemProps {
   onTrackSelected: (track: Track) => void;
 }
 
-const username = process.env.EXPO_PUBLIC_SUBSONIC_API_U;
-const password = process.env.EXPO_PUBLIC_SUBSONIC_API_P;
-
 const TrackListItem = ({ track, onTrackSelected }: TrackListItemProps) => {
-  //TODO: useActiveTrack()?.url === track.url;
   const isActiveTrack = useActiveTrack()?.id === track.id;
-
-  const coverUrl = `http://192.168.0.98:4533/rest/getCoverArt?u=${username}&p=${password}&v=1.16.1&c=ecarry&id=${track.albumId}`;
 
   const handleTrackSelect = (track: Track) => {
     onTrackSelected(track);
@@ -33,7 +27,7 @@ const TrackListItem = ({ track, onTrackSelected }: TrackListItemProps) => {
         <View>
           <Image
             source={{
-              uri: coverUrl,
+              uri: track.artwork,
             }}
             style={{
               ...styles.trackArtworkImage,

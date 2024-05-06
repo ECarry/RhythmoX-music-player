@@ -18,15 +18,17 @@ function removePrefix(obj: AnyObject): AnyObject {
   return obj;
 }
 
+const url = process.env.EXPO_PUBLIC_SUBSONIC_API_URL;
 const username = process.env.EXPO_PUBLIC_SUBSONIC_API_U;
 const password = process.env.EXPO_PUBLIC_SUBSONIC_API_P;
 
-const url = `http://192.168.0.98:4533/rest/getRandomSongs?u=${username}&p=${password}&v=1.16.1&c=ecarry&size=100`;
-const coverUrl = `http://192.168.0.98:4533/rest/getCoverArt?u=${username}&p=${password}&v=1.16.1&c=ecarry`;
+//TODO: USE TOKEN
 
 export const getRandomSongs = async () => {
   try {
-    const res = await fetch(url);
+    const res = await fetch(
+      `${url}/getRandomSongs?u=${username}&p=${password}&v=1.16.1&c=ecarry&size=100`
+    );
 
     const xmlData = await res.text();
 
@@ -43,23 +45,19 @@ export const getRandomSongs = async () => {
     if (status === "ok") {
       const res = data["subsonic-response"].randomSongs.song;
 
-      console.log(res);
+      const songs = res.map((song: AnyObject) => {
+        return {
+          ...song,
+          url: `${url}/stream?u=${username}&p=${password}&v=1.16.1&c=ecarry&id=${song.id}`,
+          artwork: `${url}/getCoverArt?u=${username}&p=${password}&v=1.16.1&c=ecarry&id=${song.albumId}`,
+        };
+      });
 
-      return res;
+      return songs;
     } else {
       return null;
     }
   } catch (error) {
     console.error(error);
-  }
-};
-
-export const getCoverArt = async (id: string) => {
-  try {
-    const cover = fetch(`${coverUrl}&id=${id}`);
-
-    return cover;
-  } catch (error) {
-    console.log(error);
   }
 };

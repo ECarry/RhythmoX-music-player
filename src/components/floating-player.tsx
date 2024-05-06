@@ -1,5 +1,5 @@
 import { Image, TouchableOpacity, View, Text, ViewProps } from "react-native";
-import { Track, useActiveTrack } from "react-native-track-player";
+import TrackPlayer, { useActiveTrack } from "react-native-track-player";
 import { StyleSheet } from "react-native";
 import { defaultStyles } from "@/styles";
 import { PlayerControls, SkipToNextButton } from "@/components/player-controls";
@@ -7,18 +7,11 @@ import { PlayerControls, SkipToNextButton } from "@/components/player-controls";
 const FloatingPlayer = ({ style }: ViewProps) => {
   const activeTrack = useActiveTrack();
 
-  console.log("activeTrack", activeTrack);
+  if (!activeTrack) return null;
 
-  //if (!activeTrack) return null;
+  const displayTrack = activeTrack;
 
-  const displayTrack: Track = activeTrack ?? {
-    url: "https://audio.jukehost.co.uk/vTRYaTEbpaYRCxiWGgL2S91mnOuMKfLw",
-    title: "Guess I'll Never Know",
-    artist: "TrackTribe",
-    artwork: "https://f4.bcbits.com/img/a3736661212_65",
-    rating: 1,
-    playlist: ["Chill 🌱"],
-  };
+  TrackPlayer.play();
 
   return (
     <TouchableOpacity activeOpacity={0.9} style={[styles.container, style]}>

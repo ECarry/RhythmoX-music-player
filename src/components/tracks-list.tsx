@@ -9,16 +9,7 @@ export type TracksListProps = Partial<FlatListProps<Track>> & {
 
 const TracksList = ({ tracks, ...flatListProps }: TracksListProps) => {
   const handleTrackSelect = async (track: Track) => {
-    const track1 = {
-      url: "https://audio.jukehost.co.uk/vTRYaTEbpaYRCxiWGgL2S91mnOuMKfLw",
-      title: "Guess I'll Never Know",
-      artist: "TrackTribe",
-      artwork: "https://f4.bcbits.com/img/a3736661212_65",
-      rating: 1,
-      playlist: ["Chill 🌱"],
-    };
-
-    await TrackPlayer.load(track1);
+    await TrackPlayer.load(track);
   };
 
   return (
