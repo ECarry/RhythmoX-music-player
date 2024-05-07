@@ -100,3 +100,45 @@ export const getFavoriteSongs = async () => {
     console.log(error);
   }
 };
+
+export const starSong = async (id: string) => {
+  try {
+    const res = await fetch(
+      `${url}/star?u=${username}&p=${password}&v=1.16.1&c=ecarry&id=${id}`
+    );
+
+    const xmlData = await res.text();
+    const data = XMLToJSON(xmlData);
+
+    const status = data["subsonic-response"].status;
+
+    if (status === "ok") {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const unstarSong = async (id: string) => {
+  try {
+    const res = await fetch(
+      `${url}/unstar?u=${username}&p=${password}&v=1.16.1&c=ecarry&id=${id}`
+    );
+
+    const xmlData = await res.text();
+    const data = XMLToJSON(xmlData);
+
+    const status = data["subsonic-response"].status;
+
+    if (status === "ok") {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

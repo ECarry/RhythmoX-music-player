@@ -13,6 +13,7 @@ import PlayerToggle from "@/components/player-toggle";
 import Entypo from "@expo/vector-icons/Entypo";
 import usePlayerBackground from "@/hooks/usePlayerBackground";
 import { LinearGradient } from "expo-linear-gradient";
+import { starSong } from "@/utils/api";
 
 const PlayerScreen = () => {
   const activeTrack = useActiveTrack();
@@ -33,6 +34,10 @@ const PlayerScreen = () => {
       </View>
     );
   }
+
+  const handleFavToggle = async () => {
+    await starSong(activeTrack.id);
+  };
 
   return (
     <LinearGradient
@@ -91,7 +96,7 @@ const PlayerScreen = () => {
                         activeTrack.isFavorite ? colors.primary : colors.icon
                       }
                       style={{ marginHorizontal: 14 }}
-                      onPress={() => {}}
+                      onPress={handleFavToggle}
                     />
                     <Entypo
                       name="dots-three-horizontal"

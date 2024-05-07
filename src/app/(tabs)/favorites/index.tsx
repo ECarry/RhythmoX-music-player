@@ -1,12 +1,19 @@
 import TracksList from "@/components/tracks-list";
 import { screenPadding } from "@/constants/tokens";
+import { useNavigationSearch } from "@/hooks/useNavigationSearch";
 import { defaultStyles } from "@/styles";
 import { getFavoriteSongs } from "@/utils/api";
-import { useEffect, useState } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { trackTitleFilter } from "@/utils/filter";
+import { useEffect, useMemo, useState } from "react";
+import { View, ScrollView } from "react-native";
 
 const FavoritesScreen = () => {
   const [data, setData] = useState([]);
+  const search = useNavigationSearch({
+    searchBarOptions: {
+      placeholder: "Find in songs",
+    },
+  });
 
   const getSongs = async () => {
     try {
@@ -21,16 +28,24 @@ const FavoritesScreen = () => {
     getSongs();
   }, []);
 
+  const filteredTracks = useMemo(() => {
+    if (!search) return data;
+
+    return data.filter(trackTitleFilter(search));
+  }, [search]);
+
   return (
     <View style={defaultStyles.container}>
-      <Text style={defaultStyles.text}>Favorites</Text>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={{
           paddingHorizontal: screenPadding.horizontal,
         }}
       >
-        <TracksList tracks={data} scrollEnabled={false} />
+        <TracksList
+          tracks={search ? filteredTracks : data}
+          scrollEnabled={false}
+        />
       </ScrollView>
     </View>
   );
