@@ -24,6 +24,18 @@ const password = process.env.EXPO_PUBLIC_SUBSONIC_API_P;
 
 //TODO: USE TOKEN
 
+const XMLToJSON = (xml: string) => {
+  const XMLOptions = {
+    ignoreAttributes: false,
+    attributeNamePrefix: "@_",
+  };
+
+  const parser = new XMLParser(XMLOptions);
+  let jObj = parser.parse(xml);
+
+  return removePrefix(jObj);
+};
+
 export const getRandomSongs = async () => {
   try {
     const res = await fetch(
@@ -32,15 +44,7 @@ export const getRandomSongs = async () => {
 
     const xmlData = await res.text();
 
-    const options = {
-      ignoreAttributes: false,
-      allowBooleanAttributes: true,
-      attributeNamePrefix: "@_",
-    };
-    const parser = new XMLParser(options);
-    let jObj = parser.parse(xmlData);
-
-    const data = removePrefix(jObj);
+    const data = XMLToJSON(xmlData);
     const status = data["subsonic-response"].status;
 
     if (status === "ok") {
@@ -63,5 +67,36 @@ export const getRandomSongs = async () => {
     }
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const getFavoriteSongs = async () => {
+  try {
+    const res = await fetch(
+      `${url}/getStarred?u=${username}&p=${password}&v=1.16.1&c=ecarry`
+    );
+
+    const xmlData = await res.text();
+
+    const data = XMLToJSON(xmlData);
+
+    const status = data["subsonic-response"].status;
+
+    if (status === "ok") {
+      const res = data["subsonic-response"].starred.song;
+      const songs = res.map((song: AnyObject) => {
+        return {
+          ...song,
+          url: `${url}/stream?u=${username}&p=${password}&v=1.16.1&c=ecarry&id=${song.id}`,
+          artwork: `${url}/getCoverArt?u=${username}&p=${password}&v=1.16.1&c=ecarry&id=${song.albumId}`,
+          isFavorite: song.starred ? true : false,
+        };
+      });
+      return songs;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
