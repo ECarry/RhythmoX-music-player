@@ -2,7 +2,6 @@ import { FlatList, FlatListProps, Text, View } from "react-native";
 import TrackListItem from "@/components/track-list-item";
 import { utilsStyles } from "@/styles";
 import TrackPlayer, { Track } from "react-native-track-player";
-import { colors } from "@/constants/tokens";
 
 export type TracksListProps = Partial<FlatListProps<Track>> & {
   tracks: Track[];

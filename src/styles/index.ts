@@ -24,4 +24,13 @@ export const utilsStyles = StyleSheet.create({
     marginTop: 20,
     color: colors.textMuted,
   },
+  slider: {
+    height: 7,
+    borderRadius: 16,
+  },
+  centeredRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });

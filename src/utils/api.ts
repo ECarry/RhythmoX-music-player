@@ -27,13 +27,14 @@ const password = process.env.EXPO_PUBLIC_SUBSONIC_API_P;
 export const getRandomSongs = async () => {
   try {
     const res = await fetch(
-      `${url}/getRandomSongs?u=${username}&p=${password}&v=1.16.1&c=ecarry&size=100`
+      `${url}/getRandomSongs?u=${username}&p=${password}&v=1.16.1&c=ecarry&size=200`
     );
 
     const xmlData = await res.text();
 
     const options = {
       ignoreAttributes: false,
+      allowBooleanAttributes: true,
       attributeNamePrefix: "@_",
     };
     const parser = new XMLParser(options);
@@ -50,8 +51,11 @@ export const getRandomSongs = async () => {
           ...song,
           url: `${url}/stream?u=${username}&p=${password}&v=1.16.1&c=ecarry&id=${song.id}`,
           artwork: `${url}/getCoverArt?u=${username}&p=${password}&v=1.16.1&c=ecarry&id=${song.albumId}`,
+          isFavorite: song.starred ? true : false,
         };
       });
+
+      console.log(songs.length);
 
       return songs;
     } else {

@@ -2,7 +2,10 @@ import { Image, TouchableOpacity, View, ViewProps } from "react-native";
 import { useActiveTrack } from "react-native-track-player";
 import { StyleSheet } from "react-native";
 import { defaultStyles } from "@/styles";
-import { PlayerControls, SkipToNextButton } from "@/components/player-controls";
+import {
+  PlayerPauseButton,
+  SkipToNextButton,
+} from "@/components/player-controls";
 import useLastActiveTrack from "@/hooks/useLastActiveTrack";
 import MovingText from "./moving-text";
 import { useRouter } from "expo-router";
@@ -38,7 +41,7 @@ const FloatingPlayer = ({ style }: ViewProps) => {
         </View>
 
         <View style={styles.trackControlsContainer}>
-          <PlayerControls iconSize={24} />
+          <PlayerPauseButton iconSize={24} />
           <SkipToNextButton iconSize={22} />
         </View>
       </>
