@@ -36,6 +36,28 @@ const XMLToJSON = (xml: string) => {
   return removePrefix(jObj);
 };
 
+export const ping = async (url: string, username: string, password: string) => {
+  try {
+    const res = await fetch(
+      `${url}/rest/ping?u=${username}&p=${password}&v=1.16.1&c=ecarry`
+    );
+    const xmlData = await res.text();
+    const data = XMLToJSON(xmlData);
+
+    const status = data["subsonic-response"].status;
+
+    console.log(status);
+
+    if (status === "ok") {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getRandomSongs = async () => {
   try {
     const res = await fetch(
