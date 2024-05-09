@@ -1,9 +1,5 @@
 # 🎵 RhythmoX: React Native Music Client for iPhone 📱
 
-## Screenshots
-
-![screenshot1](https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot1.png?raw=true&height=500)
-
 This is a mobile music client built using React Native, connecting to the Subsonic API. The client allows users to access their music library hosted on a Navidrome server.
 
 ### Features
@@ -42,6 +38,10 @@ Contributions are welcome! If you'd like to contribute:
 - Built with React Native.
 - Utilizes the Subsonic API.
 - Special thanks to the Navidrome team for their excellent music server.
+
+## Screenshots
+
+![screenshot1](https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot1.png?raw=true&height=500)
 
 ### License
 
