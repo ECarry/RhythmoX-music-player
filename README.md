@@ -2,7 +2,9 @@
 
 ## Screenshots
 
-<div class="top-screenshot"><img src="https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot1.png?raw=true" style="max-width: 100%; max-height: 35em;"></div>
+<div class="top-screenshot">
+    <img src="https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot1.png?raw=true" style="max-width: 100%; max-height: 30vh;">
+</div>
 
 This is a mobile music client built using React Native, connecting to the Subsonic API. The client allows users to access their music library hosted on a Navidrome server.
 
