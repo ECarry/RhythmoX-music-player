@@ -19,6 +19,7 @@ const SongsScreen = () => {
   const getData = async () => {
     try {
       const data = await getRandomSongs();
+
       if (data) {
         setSongs(data as Track[]);
       }
@@ -32,6 +33,8 @@ const SongsScreen = () => {
   }, []);
 
   const filteredTracks = useMemo(() => {
+    console.log(search);
+
     if (!search) return songs;
 
     return songs.filter(trackTitleFilter(search));
@@ -46,7 +49,7 @@ const SongsScreen = () => {
         }}
       >
         <TracksList
-          tracks={filteredTracks ? filteredTracks : songs}
+          tracks={filteredTracks.length !== 0 ? filteredTracks : songs}
           scrollEnabled={false}
         />
       </ScrollView>

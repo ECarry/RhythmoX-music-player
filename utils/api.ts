@@ -5,6 +5,8 @@ import { Config, Song, SubsonicResponse } from "./types";
 import { configSchema } from "@/schemas";
 
 const CLIENT = "RhythmoX";
+const IMAGE_SIZE = 400;
+const CLIENT_V = "1.16.1";
 
 export const ping = async (values: z.infer<typeof configSchema>) => {
   const validatedFields = configSchema.safeParse(values);
@@ -59,8 +61,8 @@ export const getRandomSongs = async () => {
         (song: Song) => {
           return {
             ...song,
-            url: `${server}/rest/stream?u=${username}&t=${token}&s=${salt}&v=1.16.1&c=${CLIENT}&f=json&id=${song.id}`,
-            artwork: `${server}/rest/getCoverArt?u=${username}&t=${token}&s=${salt}&v=1.16.1&c=${CLIENT}&id=${song.albumId}`,
+            url: `${server}/rest/stream?u=${username}&t=${token}&s=${salt}&v=${CLIENT_V}&c=${CLIENT}&f=json&id=${song.id}`,
+            artwork: `${server}/rest/getCoverArt?u=${username}&t=${token}&s=${salt}&v=${CLIENT_V}&c=${CLIENT}&id=${song.albumId}&size=${IMAGE_SIZE}`,
             isFavorite: song.starred ? true : false,
           };
         }

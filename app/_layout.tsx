@@ -43,7 +43,7 @@ const RootLayout = () => {
         <GestureHandlerRootView style={{ flex: 1 }}>
           <RootNavigation />
 
-          <StatusBar style="auto" />
+          <StatusBar style="dark" />
         </GestureHandlerRootView>
       </SafeAreaProvider>
     </GlobalProvider>
@@ -67,12 +67,7 @@ const RootNavigation = () => {
         }}
       />
 
-      <Stack.Screen
-        name="(tabs)"
-        options={{
-          headerShown: false,
-        }}
-      />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
       <Stack.Screen
         name="player"

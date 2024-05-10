@@ -5,6 +5,7 @@ import Entypo from "@expo/vector-icons/Entypo";
 import LoaderKit from "react-native-loader-kit";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { defaultStyles } from "@/constants/styles";
+import FastImage from "react-native-fast-image";
 import { Track, useActiveTrack, useIsPlaying } from "react-native-track-player";
 
 interface TrackListItemProps {
@@ -28,7 +29,15 @@ const TrackListItem = ({ track, onTrackSelected }: TrackListItemProps) => {
         }}
       >
         <View>
-          <Image
+          {/* <Image
+            source={{
+              uri: track.artwork,
+            }}
+            style={{
+              ...styles.trackArtworkImage,
+            }}
+          /> */}
+          <FastImage
             source={{
               uri: track.artwork,
             }}

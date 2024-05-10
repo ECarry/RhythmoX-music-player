@@ -12,6 +12,9 @@ const SongsScreenLayout = () => {
           options={{
             ...StackScreenWithSearchBar,
             headerTitle: "Songs",
+            headerStyle: {
+              backgroundColor: "#000",
+            },
           }}
         />
       </Stack>
