@@ -50,10 +50,18 @@ const PlayerProgressBar = ({ style }: ViewProps) => {
           maximumTrackTintColor: colors.maximumTrackTintColor,
         }}
       />
-      <View style={styles.timeTextContainer}>
-        <Text style={styles.timeText}>{trackElapsedTime}</Text>
-        {/* <Text style={styles.timeText}>{activeTrack?.suffix}</Text> */}
-        <Text style={styles.timeText}>-{trackRemainingTime}</Text>
+      <View className="flex-row justify-between items-center mt-4">
+        <Text style={styles.timeText} className="font-RPMedium w-12">
+          {trackElapsedTime}
+        </Text>
+        <View className="bg-gray-300/20 rounded-md p-[1px]">
+          <Text className="font-RPMedium w-10 text-center text-xs text-white opacity-75">
+            {activeTrack?.suffix}
+          </Text>
+        </View>
+        <Text style={styles.timeText} className="font-RPMedium w-12">
+          -{trackRemainingTime}
+        </Text>
       </View>
     </View>
   );
@@ -62,12 +70,6 @@ const PlayerProgressBar = ({ style }: ViewProps) => {
 export default PlayerProgressBar;
 
 const styles = StyleSheet.create({
-  timeTextContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "baseline",
-    marginTop: 20,
-  },
   timeText: {
     ...defaultStyles.text,
     color: colors.text,
