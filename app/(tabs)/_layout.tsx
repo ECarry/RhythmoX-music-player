@@ -1,4 +1,3 @@
-import React from "react";
 import { Tabs } from "expo-router";
 import { BlurView } from "expo-blur";
 import { StyleSheet } from "react-native";

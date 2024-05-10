@@ -2,22 +2,22 @@ import { TouchableHighlight, View, Text, Image } from "react-native";
 import { StyleSheet } from "react-native";
 import { colors, fontSize } from "@/constants/tokens";
 import Entypo from "@expo/vector-icons/Entypo";
-//import LoaderKit from "react-native-loader-kit";
+import LoaderKit from "react-native-loader-kit";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { defaultStyles } from "@/constants/styles";
+import { Track, useActiveTrack, useIsPlaying } from "react-native-track-player";
 
 interface TrackListItemProps {
-  track: any;
-  onTrackSelected: (track: any) => void;
+  track: Track;
+  onTrackSelected: (track: Track) => void;
 }
 
 const TrackListItem = ({ track, onTrackSelected }: TrackListItemProps) => {
-  // const { playing } = useIsPlaying();
-  // const isActiveTrack = useActiveTrack()?.id === track.id;
-  const isActiveTrack = false;
+  const { playing } = useIsPlaying();
+  const isActiveTrack = useActiveTrack()?.id === track.id;
 
-  const handleTrackSelect = (track: any) => {
-    //onTrackSelected(track);
+  const handleTrackSelect = (track: Track) => {
+    onTrackSelected(track);
   };
 
   return (
@@ -49,7 +49,7 @@ const TrackListItem = ({ track, onTrackSelected }: TrackListItemProps) => {
               }}
             />
           )}
-          {/* {isActiveTrack &&
+          {isActiveTrack &&
             (playing ? (
               <LoaderKit
                 style={styles.trackPlayingIconIndicator}
@@ -63,7 +63,7 @@ const TrackListItem = ({ track, onTrackSelected }: TrackListItemProps) => {
                 size={20}
                 style={styles.trackPlayingIconIndicator}
               />
-            ))} */}
+            ))}
         </View>
         <View
           style={{

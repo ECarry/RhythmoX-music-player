@@ -4,15 +4,24 @@ import { useEffect, useMemo, useState } from "react";
 import { defaultStyles } from "@/constants/styles";
 import { getRandomSongs } from "@/utils/api";
 import TracksList from "@/components/tracks-list";
+import { useNavigationSearch } from "@/hooks/useNavigationSearch";
+import { trackTitleFilter } from "@/utils/filter";
+import { Track } from "react-native-track-player";
 
 const SongsScreen = () => {
-  const [songs, setSongs] = useState([]);
+  const [songs, setSongs] = useState<Track[]>([]);
+  const search = useNavigationSearch({
+    searchBarOptions: {
+      placeholder: "Find in songs",
+    },
+  });
 
   const getData = async () => {
     try {
-      await getRandomSongs().then((res) => {
-        setSongs(res);
-      });
+      const data = await getRandomSongs();
+      if (data) {
+        setSongs(data as Track[]);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -22,6 +31,12 @@ const SongsScreen = () => {
     getData();
   }, []);
 
+  const filteredTracks = useMemo(() => {
+    if (!search) return songs;
+
+    return songs.filter(trackTitleFilter(search));
+  }, [search]);
+
   return (
     <View style={defaultStyles.container}>
       <ScrollView
@@ -30,7 +45,10 @@ const SongsScreen = () => {
           paddingHorizontal: screenPadding.horizontal,
         }}
       >
-        <TracksList tracks={songs} scrollEnabled={false} />
+        <TracksList
+          tracks={filteredTracks ? filteredTracks : songs}
+          scrollEnabled={false}
+        />
       </ScrollView>
     </View>
   );

@@ -13,6 +13,7 @@ const Home = () => {
           paddingHorizontal: screenPadding.horizontal,
         }}
       ></ScrollView>
+
       <StatusBar style="light" />
     </View>
   );

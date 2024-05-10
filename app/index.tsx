@@ -22,7 +22,7 @@ const index = () => {
       const data = await getData("config");
 
       await ping(JSON.parse(data)).then((res) => {
-        if (res.status) {
+        if (res && res.status) {
           router.push("/(tabs)/home");
         }
         return;

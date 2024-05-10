@@ -1,7 +1,12 @@
 import { SplashScreen, Stack } from "expo-router";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useFonts } from "expo-font";
 import GlobalProvider from "@/context/global-provider";
+import { useSetupTrackPlayer } from "@/hooks/useSetupTrackPlayer";
+import { useLogTrackPlayerState } from "@/hooks/useLogTrackPlayerState";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { StatusBar } from "expo-status-bar";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -15,6 +20,16 @@ const RootLayout = () => {
     "ReadexPro-SemiBold": require("@/assets/fonts/ReadexPro-SemiBold.ttf"),
   });
 
+  const handleTrackPlayerLoaded = useCallback(() => {
+    SplashScreen.hideAsync();
+  }, []);
+
+  useSetupTrackPlayer({
+    onLoad: handleTrackPlayerLoaded,
+  });
+
+  useLogTrackPlayerState();
+
   useEffect(() => {
     if (error) throw error;
     if (fontsLoaded) SplashScreen.hideAsync();
@@ -24,29 +39,41 @@ const RootLayout = () => {
 
   return (
     <GlobalProvider>
-      <Stack>
-        <Stack.Screen
-          name="index"
-          options={{
-            headerShown: false,
-          }}
-        />
+      <SafeAreaProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <RootNavigation />
 
-        <Stack.Screen
-          name="(auth)"
-          options={{
-            headerShown: false,
-          }}
-        />
-
-        <Stack.Screen
-          name="(tabs)"
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack>
+          <StatusBar style="auto" />
+        </GestureHandlerRootView>
+      </SafeAreaProvider>
     </GlobalProvider>
+  );
+};
+
+const RootNavigation = () => {
+  return (
+    <Stack>
+      <Stack.Screen
+        name="index"
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="(auth)"
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="(tabs)"
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack>
   );
 };
 

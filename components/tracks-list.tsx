@@ -1,13 +1,16 @@
 import { FlatList, FlatListProps, Text, View } from "react-native";
 import TrackListItem from "@/components/track-list-item";
 import { utilsStyles } from "@/constants/styles";
+import TrackPlayer, { Track } from "react-native-track-player";
 
-export type TracksListProps = Partial<FlatListProps<any>> & {
-  tracks: any[];
+export type TracksListProps = Partial<FlatListProps<Track>> & {
+  tracks: Track[];
 };
 
 const TracksList = ({ tracks, ...flatListProps }: TracksListProps) => {
-  const handleTrackSelect = async (track: any) => {};
+  const handleTrackSelect = async (track: Track) => {
+    await TrackPlayer.load(track);
+  };
 
   return (
     <FlatList

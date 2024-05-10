@@ -6,8 +6,6 @@ import { configSchema } from "@/schemas";
 
 const CLIENT = "RhythmoX";
 
-//TODO: USE TOKEN
-
 export const ping = async (values: z.infer<typeof configSchema>) => {
   const validatedFields = configSchema.safeParse(values);
 
@@ -26,7 +24,7 @@ export const ping = async (values: z.infer<typeof configSchema>) => {
 
     const data: SubsonicResponse = await response.json();
 
-    if (data["subsonic-response"]?.status === "failed") {
+    if (!data["subsonic-response"].status && data["subsonic-response"].error) {
       return {
         error: data["subsonic-response"].error.message,
         status: false,
@@ -53,7 +51,10 @@ export const getRandomSongs = async () => {
 
     const data: SubsonicResponse = await res.json();
 
-    if (data["subsonic-response"].status) {
+    if (
+      data["subsonic-response"].status &&
+      data["subsonic-response"].randomSongs
+    ) {
       const songs = data["subsonic-response"].randomSongs.song.map(
         (song: Song) => {
           return {
@@ -67,7 +68,7 @@ export const getRandomSongs = async () => {
 
       return songs;
     } else {
-      return null;
+      return [];
     }
   } catch (error) {
     console.log(error);

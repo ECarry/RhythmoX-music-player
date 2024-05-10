@@ -29,7 +29,7 @@ const SignIn = () => {
 
   const onSubmit = async () => {
     const data = form.getValues();
-    // TODO: Save to storage
+
     await storeData("config", JSON.stringify(data));
   };
 
@@ -39,10 +39,12 @@ const SignIn = () => {
     const config = form.getValues();
 
     await ping(config).then((res) => {
-      if (res.status) {
+      if (res && res.status) {
         setSuccess("Success!");
       } else {
-        setError(res.error);
+        setError(
+          "Could not connect to server. Make sure the URL is correct and the server is running."
+        );
       }
     });
   };
