@@ -38,16 +38,22 @@ const PlayerScreen = () => {
   const handleFavToggle = async () => {
     //await starSong(activeTrack.id);
   };
+  let gradientColors;
+  if (imageColors) {
+    imageColors.platform === "ios"
+      ? (gradientColors = [imageColors.background, imageColors.primary])
+      : (gradientColors = [
+          imageColors.dominant,
+          imageColors.darkMuted,
+          imageColors.lightMuted,
+          imageColors.muted,
+        ]);
+  } else {
+    gradientColors = [colors.background, colors.background];
+  }
 
   return (
-    <LinearGradient
-      style={{ flex: 1 }}
-      colors={
-        imageColors
-          ? [imageColors.background, imageColors.primary]
-          : [colors.background]
-      }
-    >
+    <LinearGradient style={{ flex: 1 }} colors={gradientColors}>
       <View style={styles.overlayContainer}>
         <DismissPlayerSymbol />
 

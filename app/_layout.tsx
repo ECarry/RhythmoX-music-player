@@ -7,8 +7,12 @@ import { useLogTrackPlayerState } from "@/hooks/useLogTrackPlayerState";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
+import TrackPlayer from "react-native-track-player";
+import { playbackService } from "@/utils/playbackService";
 
 SplashScreen.preventAutoHideAsync();
+
+TrackPlayer.registerPlaybackService(() => playbackService);
 
 const RootLayout = () => {
   const [fontsLoaded, error] = useFonts({

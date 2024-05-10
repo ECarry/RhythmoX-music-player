@@ -16,17 +16,25 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.ecarry.RhythmoX-music-player",
       "infoPlist": {
-        "UIBackgroundModes": ["audio"]
+        "UIBackgroundModes": [
+          "audio"
+        ]
       }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000"
-      }
+      },
+      "package": "com.ecarry.RhythmoXmusicplayer"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ee70f1c7-ad75-4fb8-837c-0b866bbe8898"
+      }
     }
   }
 }

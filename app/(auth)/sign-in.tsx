@@ -11,6 +11,7 @@ import { storeData } from "@/utils/storage";
 import { ping } from "@/utils/api";
 import { configSchema } from "@/schemas";
 import { useState } from "react";
+import { router } from "expo-router";
 
 export const formSchema = configSchema;
 
@@ -31,6 +32,7 @@ const SignIn = () => {
     const data = form.getValues();
 
     await storeData("config", JSON.stringify(data));
+    router.push("/(tabs)/home");
   };
 
   const onTest = async () => {
