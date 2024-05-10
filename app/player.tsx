@@ -83,7 +83,11 @@ const PlayerScreen = () => {
                       animationThreshold={30}
                       style={styles.trackTitle}
                     />
-                    <Text numberOfLines={1} style={styles.trackArtist}>
+                    <Text
+                      className="font-RPLight"
+                      numberOfLines={1}
+                      style={styles.trackArtist}
+                    >
                       {activeTrack.artist}
                     </Text>
                   </View>

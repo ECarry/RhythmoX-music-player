@@ -1,4 +1,4 @@
-import { TouchableHighlight, View, Text, Image } from "react-native";
+import { TouchableHighlight, View, Text } from "react-native";
 import { StyleSheet } from "react-native";
 import { colors, fontSize } from "@/constants/tokens";
 import Entypo from "@expo/vector-icons/Entypo";
@@ -29,14 +29,6 @@ const TrackListItem = ({ track, onTrackSelected }: TrackListItemProps) => {
         }}
       >
         <View>
-          {/* <Image
-            source={{
-              uri: track.artwork,
-            }}
-            style={{
-              ...styles.trackArtworkImage,
-            }}
-          /> */}
           <FastImage
             source={{
               uri: track.artwork,
@@ -86,6 +78,7 @@ const TrackListItem = ({ track, onTrackSelected }: TrackListItemProps) => {
           <View style={{ width: "100%" }}>
             <Text
               numberOfLines={1}
+              className="font-RPMedium"
               style={{
                 ...styles.trackTitleText,
                 color: isActiveTrack ? colors.primary : colors.text,
@@ -96,6 +89,7 @@ const TrackListItem = ({ track, onTrackSelected }: TrackListItemProps) => {
 
             {track.artist && (
               <Text
+                className="font-RPLight"
                 numberOfLines={1}
                 style={{
                   ...styles.trackArtistText,

@@ -1,5 +1,5 @@
 import { Image, TouchableOpacity, View, ViewProps } from "react-native";
-import TrackPlayer, { useActiveTrack } from "react-native-track-player";
+import { useActiveTrack } from "react-native-track-player";
 import { StyleSheet } from "react-native";
 import {
   PlayerPauseButton,
@@ -18,8 +18,6 @@ const FloatingPlayer = ({ style }: ViewProps) => {
   const displayTrack = activeTrack ?? lastActiveTrack;
 
   if (!displayTrack) return null;
-
-  //TrackPlayer.play();
 
   return (
     <TouchableOpacity

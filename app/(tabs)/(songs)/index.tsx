@@ -49,6 +49,7 @@ const SongsScreen = () => {
         }}
       >
         <TracksList
+          id="songs"
           tracks={filteredTracks.length !== 0 ? filteredTracks : songs}
           scrollEnabled={false}
         />

@@ -52,6 +52,7 @@ const MovingText = ({ text, style, animationThreshold }: MovingTextProps) => {
   return (
     <Animated.Text
       numberOfLines={1}
+      className="font-RPMedium"
       style={[
         style,
         animatedStyle,
