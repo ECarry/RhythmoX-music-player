@@ -51,7 +51,8 @@ Contributions are welcome! If you'd like to contribute:
 
 ### Screenshots
 
-![screenshot1](https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot1.png?raw=true&height=500)
+![screenshot1](https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot1.png?&height=720)
+![screenshot1](https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot2.png?height=720)
 
 ### License
 
