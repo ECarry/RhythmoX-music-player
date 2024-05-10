@@ -19,7 +19,7 @@ const FloatingPlayer = ({ style }: ViewProps) => {
 
   if (!displayTrack) return null;
 
-  TrackPlayer.play();
+  //TrackPlayer.play();
 
   return (
     <TouchableOpacity

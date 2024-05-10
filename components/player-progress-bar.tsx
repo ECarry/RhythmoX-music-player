@@ -51,9 +51,9 @@ const PlayerProgressBar = ({ style }: ViewProps) => {
         }}
       />
       <View style={styles.timeTextContainer}>
-        <Text style={styles.timeText}>{0}</Text>
-        <Text style={styles.timeText}>{activeTrack?.suffix}</Text>
-        <Text style={styles.timeText}>-{1}</Text>
+        <Text style={styles.timeText}>{trackElapsedTime}</Text>
+        {/* <Text style={styles.timeText}>{activeTrack?.suffix}</Text> */}
+        <Text style={styles.timeText}>-{trackRemainingTime}</Text>
       </View>
     </View>
   );
