@@ -25,7 +25,7 @@ const TabsLayout = () => {
           },
           tabBarBackground: () => (
             <BlurView
-              intensity={50}
+              intensity={95}
               style={{
                 ...StyleSheet.absoluteFillObject,
                 overflow: "hidden",

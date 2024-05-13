@@ -5,7 +5,7 @@ import { Config, Song, SubsonicResponse } from "./types";
 import { configSchema } from "@/schemas";
 
 const CLIENT = "RhythmoX";
-const IMAGE_SIZE = 400;
+const IMAGE_SIZE = 500;
 const CLIENT_V = "1.16.1";
 
 export const ping = async (values: z.infer<typeof configSchema>) => {

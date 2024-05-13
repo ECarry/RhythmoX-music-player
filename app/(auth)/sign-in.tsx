@@ -66,7 +66,7 @@ const SignIn = () => {
           />
           <Logo />
 
-          <View className="w-full px-4 mt-auto">
+          <View className="w-full px-4 mt-7">
             <FormField
               label="Server"
               name="server"

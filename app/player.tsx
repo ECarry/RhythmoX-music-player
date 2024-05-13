@@ -1,6 +1,6 @@
 import MovingText from "@/components/moving-text";
 import { colors, fontSize, screenPadding } from "@/constants/tokens";
-import { ActivityIndicator, Image, StyleSheet } from "react-native";
+import { ActivityIndicator, StyleSheet } from "react-native";
 import { View, Text } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useActiveTrack } from "react-native-track-player";
@@ -13,6 +13,7 @@ import Entypo from "@expo/vector-icons/Entypo";
 import usePlayerBackground from "@/hooks/usePlayerBackground";
 import { LinearGradient } from "expo-linear-gradient";
 import { defaultStyles } from "@/constants/styles";
+import FastImage from "react-native-fast-image";
 //import { starSong } from "@/utils/api";
 
 const PlayerScreen = () => {
@@ -65,7 +66,7 @@ const PlayerScreen = () => {
           }}
         >
           <View style={styles.artworkImageContainer}>
-            <Image
+            <FastImage
               source={{ uri: activeTrack.artwork }}
               resizeMode="cover"
               style={styles.artworkImage}
