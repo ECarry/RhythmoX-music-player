@@ -1,9 +1,9 @@
 # <img src="https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot.png" alt="Logo">
 
-<div style="display: flex; justify-content: center;">
-    <img src="https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot1.png?&height=720" style="max-height: 50vh;">
-    <img src="https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot2.png?height=720" style="max-height: 50vh;">
-</div>
+<p align="center">
+  <img src="https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot1.png?&height=720" height="50%" />
+  <img src="https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot2.png?&height=720" height="50%" />
+</p>
 
 <p align="center">
   <a href="https://github.com/ECarry/RhythmoX-music-player/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="LICENSE"></a>
