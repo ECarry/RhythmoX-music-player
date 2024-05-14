@@ -1,8 +1,8 @@
 # <img src="https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot.png" alt="Logo">
 
 <p align="center">
-  <img src="https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot1.png?&height=720" height="50%" />
-  <img src="https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot2.png?&height=720" height="50%" />
+  <img src="https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot1.jpg?raw=true" />
+  <img src="https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot2.jpg?raw=true" />
 </p>
 
 <p align="center">
