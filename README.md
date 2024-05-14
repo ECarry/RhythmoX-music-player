@@ -1,5 +1,10 @@
 # <img src="https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot.png" alt="Logo">
 
+<div style="display: flex; justify-content: center;">
+    <img src="https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot1.png?&height=720" style="max-height: 50vh;">
+    <img src="https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot2.png?height=720" style="max-height: 50vh;">
+</div>
+
 <p align="center">
   <a href="https://github.com/ECarry/RhythmoX-music-player/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="LICENSE"></a>
   <a href="https://expo.dev"><img src="https://img.shields.io/badge/expo%20sdk-50-white" alt="expo sdk"></a>
@@ -48,11 +53,6 @@ Contributions are welcome! If you'd like to contribute:
 - Built with React Native.
 - Utilizes the Subsonic API.
 - Special thanks to the Navidrome team for their excellent music server.
-
-### Screenshots
-
-![screenshot1](https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot1.png?&height=720)
-![screenshot1](https://github.com/ECarry/RhythmoX-music-player/blob/main/screenshots/shot2.png?height=720)
 
 ### License
 
